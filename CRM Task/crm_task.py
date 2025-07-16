@@ -2,7 +2,7 @@ customerId = input("Enter Customer ID: ")
 customerName = input("Enter Customer Name: ")
 
 isPremium_input = input("Premium Customer ? (yes/no)")
-isPremium = isPremium_input == "yes"
+isPremium = True if isPremium_input == "yes" else False
 
 yearsPartnership = int(input("Enter yearsPartnership:"))
 dealStage = input("proposal/negotiation/closed :")
@@ -11,25 +11,22 @@ discount=0.0
 
 if isPremium == "yes":
     base_discount = 0.10
-    print(f"Customer is Eligible for 10% discount")
-
-elif isPremium == "no":
+    
+elif yearsPartnership >= 3:
     base_discount = 0.05
-    print(f"Customer is Eligible for 5% discount")
-
+    
 else:
     base_discount = 0.0
-    print(f"Customer is not eligible for discount")
-
+    
 match dealStage:
     case "proposal":
-        discount += 0.02
+        extra_discount = 0.02
     case "negotitaion":
-        discount += 0.03
+        extra_discount = 0.03
     case "closed":
-        discount += 0.05
+        extra_discount = 0.05
 
-final_discount = base_discount * discount
+final_discount = base_discount * extra_discount
 deal_value = dealValue * (1-final_discount)
 
 print(f"customerId: {customerId}")
